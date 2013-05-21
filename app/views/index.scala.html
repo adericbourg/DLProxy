@@ -1,0 +1,16 @@
+@(title: String, downloadSpecification: Form[DownloadSpecification])
+
+@import helper._
+
+@main(title) {
+
+    <h1>@title</h1>
+
+    @helper.form(action = routes.Application.download(), 'class -> "form-horizontal") {
+        @inputText(downloadSpecification("url"), '_label -> "File URL")
+
+        <div class="form-actions">
+            <input type="submit" value="Download" class="btn btn-primary">
+        </div>
+    }
+}

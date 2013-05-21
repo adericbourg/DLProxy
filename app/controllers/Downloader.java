@@ -12,8 +12,6 @@ import models.DownloadSpecification;
  */
 final class Downloader {
 
-    final static int size = 1024;
-
     private Downloader() {
 
     }

@@ -7,6 +7,7 @@ import models.DownloadStream;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.badRequest;
 import views.html.index;
 
 public class Application extends Controller {
@@ -32,7 +33,7 @@ public class Application extends Controller {
 
     private static Result stream(DownloadStream downloadStream) {
         if (!DownloadStatus.VALID.equals(downloadStream.status)) {
-            return badRequest(downloadStream.toString());
+            return badRequest(badRequest.render("Error downloading file", downloadStream.toString()));
         }
         response().setContentType("application/x-download");
         response().setHeader("Content-disposition",

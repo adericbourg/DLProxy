@@ -26,7 +26,7 @@ public class DownloadStream {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DownloadStream {\n");
+        final StringBuilder sb = new StringBuilder("downloadStream = {\n");
         sb.append("\tstream: ").append(stream).append(",\r\n");
         sb.append("\tbaseName: '").append(baseName).append('\'').append(",\r\n");
         sb.append("\textension: '").append(extension).append('\'').append(",\r\n");

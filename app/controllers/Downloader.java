@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import models.DownloadSpecification;
+import models.DownloadStatus;
 import models.DownloadStream;
 
 import org.apache.commons.io.FilenameUtils;
@@ -20,7 +21,7 @@ final class Downloader {
     }
 
     static DownloadStream download(DownloadSpecification downloadSpecification) {
-        DownloadStream result = new DownloadStream();
+        DownloadStream result = new DownloadStream(downloadSpecification.url);
         result.baseName = getBaseName(downloadSpecification);
         result.extension = getExtension(downloadSpecification);
 
@@ -28,10 +29,12 @@ final class Downloader {
             URL url = new URL(downloadSpecification.url);
             URLConnection urlConnection = url.openConnection();
             result.stream = urlConnection.getInputStream();
-
+            result.status = DownloadStatus.VALID;
             return result;
         } catch (IOException ioe) {
-            return null;
+            result.status = DownloadStatus.ERROR;
+            result.message = ioe.getMessage();
+            return result;
         }
     }
 

@@ -2,6 +2,7 @@ package controllers;
 
 import static play.data.Form.form;
 import models.DownloadSpecification;
+import models.DownloadStatus;
 import models.DownloadStream;
 import play.data.Form;
 import play.mvc.Controller;
@@ -30,8 +31,8 @@ public class Application extends Controller {
     }
 
     private static Result stream(DownloadStream downloadStream) {
-        if (downloadStream == null) {
-            return badRequest();
+        if (!DownloadStatus.VALID.equals(downloadStream.status)) {
+            return badRequest(downloadStream.toString());
         }
         response().setContentType("application/x-download");
         response().setHeader("Content-disposition",

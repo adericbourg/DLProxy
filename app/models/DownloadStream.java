@@ -32,6 +32,7 @@ public class DownloadStream {
         sb.append(", extension: '").append(extension).append('\'');
         sb.append(", status: '").append(status).append('\'');
         sb.append(", message: '").append(message).append('\'');
+        sb.append(", sourceUrl: '").append(sourceUrl).append('\'');
         sb.append('}');
         return sb.toString();
     }

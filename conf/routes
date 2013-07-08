@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-POST    /download                   controllers.Application.download()
+POST    /                           controllers.Application.download()
 
 GET     /webjars/*file              controllers.WebJarAssets.at(file)
 

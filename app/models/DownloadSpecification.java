@@ -10,4 +10,7 @@ public class DownloadSpecification {
     @Constraints.Required
     public String url;
 
+    public String targetFilename;
+    public String targetExtension;
+
 }

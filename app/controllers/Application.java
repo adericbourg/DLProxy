@@ -2,6 +2,7 @@ package controllers;
 
 import static play.data.Form.form;
 import models.DownloadSpecification;
+import models.DownloadStream;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -23,7 +24,18 @@ public class Application extends Controller {
         }
 
         DownloadSpecification downloadSpecification = downloadForm.get();
+        DownloadStream downloadStream = Downloader.download(downloadSpecification);
 
-        return ok(Downloader.download(downloadSpecification)); // Stream content
+        return stream(downloadStream);
+    }
+
+    private static Result stream(DownloadStream downloadStream) {
+        if (downloadStream == null) {
+            return badRequest();
+        }
+        response().setContentType("application/x-download");
+        response().setHeader("Content-disposition",
+                String.format("attachment; filename=%s.%s", downloadStream.baseName, downloadStream.extension));
+        return ok(downloadStream.stream); // Stream content
     }
 }

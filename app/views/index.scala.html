@@ -1,6 +1,7 @@
 @(title: String, downloadSpecification: Form[DownloadSpecification])
 
 @import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.f) }
 
 @main(title) {
 
@@ -8,6 +9,8 @@
 
     @helper.form(action = routes.Application.download(), 'class -> "form-horizontal") {
         @inputText(downloadSpecification("url"), '_label -> "File URL")
+        @inputText(downloadSpecification("targetFilename"), '_label -> "Rename file as")
+        @inputText(downloadSpecification("targetExtension"), '_label -> "Force extension to")
 
         <div class="form-actions">
             <input type="submit" value="Download" class="btn btn-primary">

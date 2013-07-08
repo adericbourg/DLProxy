@@ -1,8 +1,5 @@
 @(title: String)(content: Html)
 
-@import helper._
-@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.f) }
-
 <!DOCTYPE html>
 
 <html>
@@ -15,7 +12,11 @@
         <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/font-awesome.min.css"))'>
     </head>
     <body>
-        @content
+
+        <div class="container-fluid">
+            @content
+        </div>
+
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/jquery.js"))'></script>
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/bootstrap.min.js"))'></script>
         <!--[if lt IE 9]>

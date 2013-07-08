@@ -26,13 +26,13 @@ public class DownloadStream {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DownloadStream{");
-        sb.append("stream: ").append(stream);
-        sb.append(", baseName: '").append(baseName).append('\'');
-        sb.append(", extension: '").append(extension).append('\'');
-        sb.append(", status: '").append(status).append('\'');
-        sb.append(", message: '").append(message).append('\'');
-        sb.append(", sourceUrl: '").append(sourceUrl).append('\'');
+        final StringBuilder sb = new StringBuilder("DownloadStream {\n");
+        sb.append("\tstream: ").append(stream).append(",\r\n");
+        sb.append("\tbaseName: '").append(baseName).append('\'').append(",\r\n");
+        sb.append("\textension: '").append(extension).append('\'').append(",\r\n");
+        sb.append("\tstatus: '").append(status).append('\'').append(",\r\n");
+        sb.append("\tmessage: '").append(message).append('\'').append(",\r\n");
+        sb.append("\tsourceUrl: '").append(sourceUrl).append('\'').append("\r\n");
         sb.append('}');
         return sb.toString();
     }

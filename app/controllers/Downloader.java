@@ -20,19 +20,9 @@ final class Downloader {
     }
 
     static DownloadStream download(DownloadSpecification downloadSpecification) {
-        // TODO Many things...
-
-        //response().setContentType("application/x-download");
-        //response().setHeader("Content-disposition","attachment; filename=tradeLogTest.xlsx");
-        //return ok(new File("/absolute/path/to/tradeLogTest.xlsx"));
-
-        // http://stackoverflow.com/questions/11860971/streaming-large-files-with-play-framework-and-third-party-api
-
         DownloadStream result = new DownloadStream();
-        result.baseName = StringUtils.isEmpty(downloadSpecification.targetFilename) ? FilenameUtils.getBaseName(downloadSpecification.url)
-                : downloadSpecification.targetFilename;
-        result.extension = StringUtils.isEmpty(downloadSpecification.targetExtension) ? org.apache.commons.io.FilenameUtils
-                .getExtension(downloadSpecification.url) : downloadSpecification.targetExtension;
+        result.baseName = getBaseName(downloadSpecification);
+        result.extension = getExtension(downloadSpecification);
 
         try {
             URL url = new URL(downloadSpecification.url);
@@ -43,5 +33,19 @@ final class Downloader {
         } catch (IOException ioe) {
             return null;
         }
+    }
+
+    private static String getBaseName(DownloadSpecification downloadSpecification) {
+        return StringUtils.isEmpty(downloadSpecification.targetFilename) ? FilenameUtils.getBaseName(downloadSpecification.url)
+                : downloadSpecification.targetFilename;
+    }
+
+    private static String getExtension(DownloadSpecification downloadSpecification) {
+        String rawExtension = StringUtils.isEmpty(downloadSpecification.targetExtension) ? FilenameUtils
+                .getExtension(downloadSpecification.url) : downloadSpecification.targetExtension;
+        if (rawExtension != null) {
+            rawExtension = rawExtension.split("\\?")[0];
+        }
+        return rawExtension;
     }
 }

@@ -8,20 +8,21 @@ import java.io.InputStream;
 public class DownloadStream {
 
     public DownloadStream() {
-        super();
+        this(null);
     }
 
     public DownloadStream(String sourceUrl) {
-        this();
+        super();
         this.sourceUrl = sourceUrl;
     }
 
     public InputStream stream;
-    public String sourceUrl;
     public String baseName;
     public String extension;
     public DownloadStatus status = DownloadStatus.NEW;
     public String message;
+
+    private final String sourceUrl;
 
     @Override
     public String toString() {

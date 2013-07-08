@@ -6,5 +6,5 @@ package models;
 public enum DownloadStatus {
     NEW,
     VALID,
-    ERROR;
+    ERROR
 }

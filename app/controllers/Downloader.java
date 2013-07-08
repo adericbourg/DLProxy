@@ -26,8 +26,7 @@ final class Downloader {
         result.extension = getExtension(downloadSpecification);
 
         try {
-            URL url = new URL(downloadSpecification.url);
-            URLConnection urlConnection = url.openConnection();
+            URLConnection urlConnection = openConnection(downloadSpecification.url);
             result.stream = urlConnection.getInputStream();
             result.status = DownloadStatus.VALID;
             return result;
@@ -36,6 +35,13 @@ final class Downloader {
             result.message = ioe.getMessage();
             return result;
         }
+    }
+
+    private static URLConnection openConnection(String url) throws IOException {
+        if (ProxyConfiguration.needProxy(url)) {
+            return new URL(url).openConnection(ProxyConfiguration.getProxy(url));
+        }
+        return new URL(url).openConnection();
     }
 
     private static String getBaseName(DownloadSpecification downloadSpecification) {

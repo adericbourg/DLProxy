@@ -18,8 +18,7 @@ object ApplicationBuild extends Build {
     "org.webjars" % "webjars-play" % "2.1.0-1",
     "org.webjars" % "html5shiv" % "3.6.2",
     "org.webjars" % "jquery" % "2.0.0",
-    "org.webjars" % "bootstrap" % "2.3.1-1",
-    "org.webjars" % "font-awesome" % "3.1.1-1"
+    "org.webjars" % "bootstrap" % "2.3.1-1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

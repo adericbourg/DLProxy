@@ -1,5 +1,4 @@
 import sbt._
-import Keys._
 import play.Project._
 import com.github.play2war.plugin._
 
@@ -13,7 +12,6 @@ object ApplicationBuild extends Build {
   )
 
   val appDependencies = Seq(
-    // Add your project dependencies here,
     javaCore,
     javaJdbc,
     javaEbean,
@@ -26,8 +24,6 @@ object ApplicationBuild extends Build {
     "org.webjars" % "bootstrap" % "2.3.1-1"
   )
 
-  val main = play.Project(appName, appVersion, appDependencies).settings(
-    projectSettings: _*
-  )
-
+  val main = play.Project(appName, appVersion, appDependencies).
+    settings(projectSettings: _*)
 }

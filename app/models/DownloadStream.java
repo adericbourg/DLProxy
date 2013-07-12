@@ -1,5 +1,7 @@
 package models;
 
+import com.google.common.base.Objects;
+
 import java.io.InputStream;
 
 /**
@@ -26,14 +28,12 @@ public class DownloadStream {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("downloadStream = {\n");
-        sb.append("\tstream: ").append(stream).append(",\r\n");
-        sb.append("\tbaseName: '").append(baseName).append('\'').append(",\r\n");
-        sb.append("\textension: '").append(extension).append('\'').append(",\r\n");
-        sb.append("\tstatus: '").append(status).append('\'').append(",\r\n");
-        sb.append("\tmessage: '").append(message).append('\'').append(",\r\n");
-        sb.append("\tsourceUrl: '").append(sourceUrl).append('\'').append("\r\n");
-        sb.append('}');
-        return sb.toString();
+        return Objects.toStringHelper(this)
+                .add("stream", stream)
+                .add("baseName", baseName)
+                .add("extension", extension)
+                .add("message", message)
+                .add("sourceUrl", sourceUrl)
+                .toString();
     }
 }

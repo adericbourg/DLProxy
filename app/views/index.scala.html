@@ -1,0 +1,11 @@
+@(proxyRequestForm: Form[ProxyRequest])(implicit request: RequestHeader)
+
+    @main("What do you want to de-proxy?") {
+        <h1>Deproxy all the things</h1>
+
+        @helper.form(action = routes.ProxyController.serveProxied()) {
+            @helper.CSRF.formField
+            <input type="search" class="address-input" id="url" name="url" placeholder="Where are we going?" />
+            <button type="submit">Let's go!</button>
+        }
+    }
